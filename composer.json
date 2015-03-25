@@ -1,0 +1,11 @@
+{
+	"name": "chrispynegar/bootstrap",
+	"description": "",
+	"authors": [
+		{
+			"name": "Chris Pynegar",
+			"email": "chris@chrispynegar.co.uk"
+		}
+	],
+	"require": {}
+}

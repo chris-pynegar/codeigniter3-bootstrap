@@ -1,0 +1,17 @@
+{
+	"name": "bootstrap",
+	"description": "",
+	"version": "1.0.0",
+	"author": "Chris Pynegar <chris@chrispynegar.co.uk>",
+	"devDependencies": {
+		"gulp": "*",
+		"gulp-uglify": "*",
+		"gulp-jshint": "*",
+		"gulp-concat": "*",
+		"gulp-less": "*",
+		"gulp-autoprefixer": "*",
+		"gulp-sourcemaps": "*",
+		"gulp-order": "*",
+		"gulp-cssmin": "*"
+	}
+}
