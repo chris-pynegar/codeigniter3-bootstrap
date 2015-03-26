@@ -23,7 +23,9 @@ return array(
         ),
 
         // Based on the system name
-        'hostname'	=> array()
+        'hostname'	=> array(
+            '#\\.local$#'
+        )
 
     ),
 

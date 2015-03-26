@@ -30,7 +30,7 @@ if ( ! empty($environments))
         {
             foreach ($config['hostname'] as $hostname)
             {
-                if (strtolower(gethostname()) === strtolower($hostname))
+                if (preg_match($hostname, strtolower(gethostname())))
                 {
                     $env = $environment;
                     break;
