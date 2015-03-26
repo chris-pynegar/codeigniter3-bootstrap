@@ -3,6 +3,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 /*
 |--------------------------------------------------------------------------
+| Module Locations
+|--------------------------------------------------------------------------
+|
+| Define the path(s) to the applications modules.
+|
+*/
+$config['modules_locations'] = array(
+    realpath(APPPATH).'/modules/' => '../modules/'
+);
+
+/*
+|--------------------------------------------------------------------------
 | Base Site URL
 |--------------------------------------------------------------------------
 |
