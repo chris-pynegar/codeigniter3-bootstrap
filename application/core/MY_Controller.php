@@ -15,9 +15,9 @@ class MY_Controller extends CI_Controller {
     public function __construct()
     {
         parent::__construct();
-
+        
         // Only CLI requests can access the controllers/cli directory
-        if ($this->router->directory === 'cli' && ! is_cli())
+        if ($this->router->directory === 'cli/' && ! is_cli())
         {
             show_404();
         }
