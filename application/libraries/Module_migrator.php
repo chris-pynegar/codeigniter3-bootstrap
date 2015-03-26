@@ -79,6 +79,8 @@ class Module_migrator {
      */
     private function execute()
     {
+        echo 'Running module migrations'.NL;
+        
         // DB Forge required
         $this->ci->load->dbforge();
         
@@ -110,6 +112,8 @@ class Module_migrator {
             // Run the 'up' method to install the migration
             if (method_exists($class, 'up'))
             {
+                echo 'Running '.$migration['module'].' - '.$name.NL;
+                
                 $class->up();
                 
                 // Record the installed migration
@@ -120,6 +124,8 @@ class Module_migrator {
                 ));
             }
         }
+        
+        echo 'Finished running module migrations'.NL;
     }
     
     /**
