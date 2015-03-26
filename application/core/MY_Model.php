@@ -571,36 +571,36 @@ class MY_Model extends CI_Model {
     private function default_find_options()
     {
         return array(
-            'common_select'		=> TRUE,
-            'common_join'		=> TRUE,
-            'common_where'		=> TRUE,
-            'ignore_common'		=> FALSE,
-            'paginate'			=> FALSE,
-            'distinct'			=> FALSE,
-            'page'				=> $this->page,
-            'per_page'			=> $this->per_page,
-            'return_as'			=> 'object',
-            'select'			=> array(),
-            'select_max'		=> array(),
-            'select_min'		=> array(),
-            'select_avg'		=> array(),
-            'select_sum'		=> array(),
-            'join'				=> array(),
-            'where'				=> array(),
-            'or_where'			=> array(),
-            'where_in'			=> array(),
-            'or_where_in'		=> array(),
-            'where_not_in'		=> array(),
-            'or_where_not_in'	=> array(),
-            'like'				=> array(),
-            'or_like'			=> array(),
-            'not_like'			=> array(),
-            'or_not_like'		=> array(),
-            'group_by'			=> array(),
-            'having'			=> array(),
-            'or_having'			=> array(),
-            'order_by'			=> array(),
-            'limit'				=> array()
+            'common_select'     => TRUE,
+            'common_join'       => TRUE,
+            'common_where'      => TRUE,
+            'ignore_common'     => FALSE,
+            'paginate'          => FALSE,
+            'distinct'          => FALSE,
+            'page'              => $this->page,
+            'per_page'          => $this->per_page,
+            'return_as'         => 'object',
+            'select'            => array(),
+            'select_max'        => array(),
+            'select_min'        => array(),
+            'select_avg'        => array(),
+            'select_sum'        => array(),
+            'join'              => array(),
+            'where'             => array(),
+            'or_where'          => array(),
+            'where_in'          => array(),
+            'or_where_in'       => array(),
+            'where_not_in'      => array(),
+            'or_where_not_in'   => array(),
+            'like'              => array(),
+            'or_like'           => array(),
+            'not_like'          => array(),
+            'or_not_like'       => array(),
+            'group_by'          => array(),
+            'having'            => array(),
+            'or_having'         => array(),
+            'order_by'          => array(),
+            'limit'             => array()
         );
     }
 
@@ -690,7 +690,8 @@ class MY_Model extends CI_Model {
     private function set_pagination()
     {
         // A result count is required
-        if ( ! $this->count) {
+        if ( ! $this->count)
+        {
             return NULL;
         }
 
@@ -702,12 +703,12 @@ class MY_Model extends CI_Model {
 
         // Create the pagination object
         $this->pagination = new stdClass;
-        $this->pagination->current_page	= (int)$this->page;
-        $this->pagination->per_page		= $this->per_page;
-        $this->pagination->first_page	= (($this->page - 1) * $this->per_page) + 1;
-        $this->pagination->last_page	= min((($this->page) * $this->per_page), $this->count);
-        $this->pagination->total_pages	= ceil($this->count / $this->per_page);
-        $this->pagination->total_items	= $this->count;
+        $this->pagination->current_page = (int)$this->page;
+        $this->pagination->per_page     = $this->per_page;
+        $this->pagination->first_page   = (($this->page - 1) * $this->per_page) + 1;
+        $this->pagination->last_page    = min((($this->page) * $this->per_page), $this->count);
+        $this->pagination->total_pages  = ceil($this->count / $this->per_page);
+        $this->pagination->total_items  = $this->count;
 
         return $this->pagination;
     }
