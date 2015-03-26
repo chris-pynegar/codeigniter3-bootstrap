@@ -9,39 +9,39 @@
  */
 return array(
 
-	/**
-	 * Development Environments
-	 */
-	'development'	=> array(
+    /**
+     * Development Environments
+     */
+    'development'	=> array(
 
-		// Based on the URI
-		'http_host'	=> array(
-			'#\\.dev$#',				// anything.dev
-			'#\\.local$#',				// anything.local
-			'#localhost$#',				// localhost
-			'#localhost\:[0-9]{4}+$#'	// localhost with port number
-		),
+        // Based on the URI
+        'http_host'	=> array(
+            '#\\.dev$#',				// anything.dev
+            '#\\.local$#',				// anything.local
+            '#localhost$#',				// localhost
+            '#localhost\:[0-9]{4}+$#'	// localhost with port number
+        ),
 
-		// Based on the system name
-		'hostname'	=> array()
+        // Based on the system name
+        'hostname'	=> array()
 
-	),
+    ),
 
-	/**
-	 * Staging Environments
-	 */
-	'staging'		=> array(
+    /**
+     * Staging Environments
+     */
+    'staging'		=> array(
 
-		// Based on the URI
-		'http_host'	=> array(
-			'#^staging\\.#'				// staging.anything.com
-		)
+        // Based on the URI
+        'http_host'	=> array(
+            '#^staging\\.#'				// staging.anything.com
+        )
 
-	),
+    ),
 
-	/**
-	 * Production Environments
-	 */
-	'production'	=> array()
+    /**
+     * Production Environments
+     */
+    'production'	=> array()
 
 );
