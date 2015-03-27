@@ -33,6 +33,36 @@ class Users_model extends MY_Model {
     }
     
     /**
+     * Find a user by their username
+     * 
+     * @param string $username
+     * @return object
+     */
+    public function find_by_username($username)
+    {
+        return $this->find('first', array(
+            'where' => array(
+                array('username', $username)
+            )
+        ));
+    }
+    
+    /**
+     * Find a user by their email address
+     * 
+     * @param string $username
+     * @return object
+     */
+    public function find_by_email($email)
+    {
+        return $this->find('first', array(
+            'where' => array(
+                array('email', $email)
+            )
+        ));
+    }
+
+    /**
      * Common select
      * 
      * @return array

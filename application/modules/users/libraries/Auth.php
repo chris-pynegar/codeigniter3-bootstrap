@@ -66,6 +66,50 @@ class Auth {
     {
         return $this->logged_in;
     }
+    
+    /**
+     * Attempt to login a user based on their credentials
+     * 
+     * @param string $username
+     * @param string $password
+     * @return bool
+     */
+    public function login($username, $password)
+    {
+        // Find the user by their username, we need their unique salt to
+        // validate the correct password
+        $user = $this->ci->users_model->find_by_username($username);
+        
+        // If a user was found check that they are also active and not banned
+        if ($user && $user->active === '1' && $user->banned !== '1')
+        {
+            // Encrypt the password
+            $password = $this->encrypt_password($password, $user->salt);
+            
+            // Do we have a match?
+            if ($user->password === $password)
+            {
+                // Valid! Authorize this user
+                $this->authorize($user);
+                
+                // Success
+                return TRUE;
+            }
+        }
+        
+        // User was not authorized
+        return FALSE;
+    }
+    
+    /**
+     * Logout the user
+     * 
+     * @return void
+     */
+    public function logout()
+    {
+        return $this->unauthorize();
+    }
 
     /**
      * Authorizes a user
