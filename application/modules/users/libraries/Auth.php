@@ -124,4 +124,27 @@ class Auth {
         return rand(10000000, 99999999);
     }
     
+    /**
+     * Generates a random password
+     * 
+     * @return string
+     */
+    public function random_password()
+    {
+        // Do we have a dictionary to load?
+        if ($this->ci->load->config('users/dictionary', TRUE))
+        {
+            $words = $this->ci->config->config['dictionary']['dictionary'];
+            
+            return trim(ucwords($words[rand(0, (count($words) - 1))])).rand(10, 99);
+        }
+        // Otherwise use CodeIgniters random string function
+        else
+        {
+            $this->ci->load->helper('string');
+            
+            return random_string('alnum', 8);
+        }
+    }
+    
 }
