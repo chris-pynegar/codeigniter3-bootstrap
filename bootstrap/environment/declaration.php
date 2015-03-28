@@ -11,6 +11,12 @@
 // Load the environments config
 $environments = require 'config.php';
 
+// Do we have a custom environments file to load?
+if (file_exists($path = dirname(__FILE__).'/custom.php'))
+{
+    $environments = array_merge_recursive($environments, require $path);
+}
+
 if ( ! empty($environments))
 {
     foreach ($environments as $environment => $config)

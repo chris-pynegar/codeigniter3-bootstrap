@@ -1,4 +1,5 @@
 node_modules/
 bower_components/
+bootstrap/environment/custom.php
 database.php
 npm-debug.log
