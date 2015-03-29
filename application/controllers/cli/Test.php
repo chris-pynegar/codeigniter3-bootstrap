@@ -29,41 +29,52 @@ class Test extends MY_Controller {
      * @param string $test
      * @return void
      */
-    public function index($module = NULL, $test = NULL, $type = 'library')
+    public function module($module, $test = NULL)
     {
-        
-        
-        //$test = realpath(APPPATH).'/modules/users/tests/Auth_test.php';
-        
-        $this->run($module, $test, $type);
+        // Are we running a particular test?
+        if ($test !== NULL)
+        {
+            $this->run($module, $test);
+        }
+        // Otherwise run all tests for a module
+        else
+        {
+            $path = realpath(APPPATH).'/modules/'.$module.'/tests';
+            
+            if (is_dir($path))
+            {
+                foreach (scandir($path) as $file)
+                {
+                    // Check file is a test
+                    if (substr($file, -9) === '_test.php')
+                    {
+                        $test = substr($file, 0, -9);
+                        
+                        // Run the test
+                        $this->run($module, $test);
+                    }
+                }
+            }
+        }
     }
     
     /**
      * Runs a test file
      * 
+     * @param string $module
      * @param string $test
      * @return void
      */
-    private function run($module, $name, $type = 'library')
+    private function run($module, $name)
     {
-        // Set the current sub directory based on the type
-        switch ($type)
-        {
-            case 'library':
-                $sub_dir = 'libraries';
-                break;
-            default:
-                return FALSE;
-        }
-        
         // Get the path to the module
         $module_path = realpath(APPPATH).'/modules/'.$module.'/';
         
         // Check the library exists
-        if (is_file($module_path.$sub_dir.'/'.$name.'.php'))
+        if (is_file($module_path.'libraries/'.$name.'.php'))
         {
             // Yes, load it
-            $this->load->$type($module.'/'.$name);
+            $this->load->library($module.'/'.$name);
             
             // We need to load the test if it exists
             if (is_file($test = $module_path.'tests/'.$name.'_test.php'))
@@ -92,24 +103,6 @@ class Test extends MY_Controller {
                 $class->result();
             }
         }
-        
-        // Load in the test if it exists
-//        if (file_exists($test))
-//        {
-//            require $test;
-//            
-//            // Instantiate the test class
-//            $instantiated = new Auth_test;
-//            
-//            // Get the public classes to test and run the test for each 
-//            // method that has one
-//            $reflector = new ReflectionClass($instantiated);
-//            
-//            foreach ($reflector->getMethods(ReflectionMethod::IS_PUBLIC) as $method)
-//            {
-//                var_dump($method);
-//            }
-//        }
     }
     
 }

@@ -21,9 +21,35 @@ class Auth_test extends Mock {
     }
     
     /**
+     * Test for checking if the user is logged in
+     * 
+     * @return void
+     */
+    public function logged_in_test()
+    {
+        $a = $this->ci->auth->logged_in();
+        
+        $this->ci->unit->run($a, 'is_bool', __METHOD__);
+    }
+
+    /**
+     * Test for encypting a password
+     * 
+     * @return void
+     */
+    public function encrypt_password_test()
+    {
+        $a = 'password';
+        $b = $this->ci->auth->generate_salt();
+        $c = $this->ci->auth->encrypt_password($a, $b);
+        
+        $this->ci->unit->run($c, 'is_string', __METHOD__);
+    }
+    
+    /**
      * Test for generating a salt
      * 
-     * @return int
+     * @return void
      */
     public function generate_salt_test()
     {
@@ -35,7 +61,7 @@ class Auth_test extends Mock {
     /**
      * Test for generating a random password
      * 
-     * @return string
+     * @return void
      */
     public function random_password_test()
     {
