@@ -7,5 +7,7 @@
 			"email": "chris@chrispynegar.co.uk"
 		}
 	],
-	"require": {}
+	"require": {
+		"league/climate": "~3.0"
+	}
 }

@@ -1,5 +1,7 @@
 node_modules/
 bower_components/
+vendor/
+composer.lock
 bootstrap/environment/custom.php
 database.php
 npm-debug.log
