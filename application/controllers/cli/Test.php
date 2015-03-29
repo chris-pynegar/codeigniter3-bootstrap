@@ -23,7 +23,27 @@ class Test extends MY_Controller {
     }
     
     /**
-     * Runs a set of tests
+     * Runs all tests
+     * 
+     * @return void
+     */
+    public function all()
+    {
+        $path = realpath(APPPATH).'/modules/';
+        
+        foreach (scandir($path) as $module)
+        {
+            if ( ! is_dir($path.$module) OR in_array($module, array('.', '..'), TRUE))
+            {
+                continue;
+            }
+            
+            $this->module($module);
+        }
+    }
+
+    /**
+     * Runs module tests
      * 
      * @param string $module
      * @param string $test
