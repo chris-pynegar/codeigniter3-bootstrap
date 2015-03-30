@@ -3,7 +3,7 @@
 ### Install Package dependencies
 
 ```sh
-$ composer update
+$ composer install
 ```
 
 ### Install NodeJS dependencies
