@@ -6,6 +6,11 @@
  * @author Chris Pynegar <chris@chrispynegar.co.uk>
  */
 class MY_Controller extends CI_Controller {
+    
+    /**
+     * @var array View data
+     */
+    protected $viewdata = array();
 
     /**
      * Constructor
