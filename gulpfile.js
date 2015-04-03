@@ -6,10 +6,11 @@ var gulp        = require('gulp'),
     autoprefix  = require('gulp-autoprefixer'),
     sourcemaps  = require('gulp-sourcemaps'),
     order       = require('gulp-order'),
-    cssmin      = require('gulp-cssmin');
+    cssmin      = require('gulp-cssmin'),
+    apps        = ['app', 'admin'];
 
 // Compile all asset files
-gulp.task('build', ['js', 'less']);
+gulp.task('build', ['js', 'libraries', 'less']);
 
 // Compile JavaScript files
 gulp.task('js', function () {
@@ -44,13 +45,19 @@ gulp.task('libraries', function () {
 // Compile LESS files
 gulp.task('less', function () {
 
-    gulp.src('assets/less/app.less')
-        .pipe(sourcemaps.init())
-        .pipe(less())
-        .pipe(autoprefix('last 2 version', 'ie 8', 'ie 9'))
-        .pipe(sourcemaps.write())
-        .pipe(cssmin())
-        .pipe(gulp.dest('dist/css'));
+    for (var i in apps) {
+
+        var a = apps[i];
+
+        gulp.src('assets/less/' + a + '.less')
+            .pipe(sourcemaps.init())
+            .pipe(less())
+            .pipe(autoprefix('last 2 version', 'ie 8', 'ie 9'))
+            .pipe(sourcemaps.write())
+            .pipe(cssmin())
+            .pipe(gulp.dest('dist/css'));
+
+    }
 
 });
 
