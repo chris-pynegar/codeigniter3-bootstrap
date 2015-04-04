@@ -143,7 +143,7 @@ class Template {
         // Set the template data
         foreach ($data as $key => $value)
         {
-            $this->set_data($key, $data);
+            $this->set_data($key, $value);
         }
         
         // Set the correct path
