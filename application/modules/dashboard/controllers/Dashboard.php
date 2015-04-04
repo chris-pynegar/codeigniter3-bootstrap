@@ -24,8 +24,7 @@ class Dashboard extends MY_Controller {
      */
     public function index()
     {
-        $this->load->view('dashboard/dashboard.view.php');
-        //$this->load->view('dashboard');
+        $this->template->view('dashboard/dashboard');
     }
     
 }

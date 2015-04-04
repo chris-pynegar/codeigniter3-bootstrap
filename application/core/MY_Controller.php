@@ -26,6 +26,12 @@ class MY_Controller extends CI_Controller {
         {
             show_404();
         }
+        
+        // Load the template
+        $this->load->library('templates/template', array(
+            'template'  => 'admin',
+            'layout'    => 'default'
+        ));
     }
 
 }
