@@ -22,6 +22,11 @@ class Module_migrator {
     protected $ci;
     
     /**
+     * @var \League\CLImate\CLImate
+     */
+    protected $climate;
+    
+    /**
      * Constructor
      * 
      * @return void
@@ -29,6 +34,9 @@ class Module_migrator {
     public function __construct()
     {
         $this->ci =& get_instance();
+        
+        // Initialize the CLImate class
+        $this->climate = new League\CLImate\CLImate;
     }
     
     /**
@@ -79,7 +87,7 @@ class Module_migrator {
      */
     private function execute()
     {
-        echo 'Running module migrations'.NL;
+        $this->climate->out('Running module migrations');
         
         // DB Forge required
         $this->ci->load->dbforge();
@@ -112,7 +120,7 @@ class Module_migrator {
             // Run the 'up' method to install the migration
             if (method_exists($class, 'up'))
             {
-                echo 'Running '.$migration['module'].' - '.$name.NL;
+                $this->climate->blue()->out('Running '.$migration['module'].' - '.$name);
                 
                 $class->up();
                 
@@ -125,7 +133,7 @@ class Module_migrator {
             }
         }
         
-        echo 'Finished running module migrations'.NL;
+        $this->climate->out('Finished running module migrations');
     }
     
     /**

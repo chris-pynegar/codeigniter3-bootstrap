@@ -21,6 +21,18 @@ class Auth_test extends Mock {
     }
     
     /**
+     * Test for checking the login url
+     * 
+     * @return void
+     */
+    public function login_url_test()
+    {
+        $a = $this->ci->auth->login_url();
+        
+        $this->ci->unit->run($a, 'is_string', __METHOD__);
+    }
+    
+    /**
      * Test for checking if the user is logged in
      * 
      * @return void

@@ -29,6 +29,11 @@ class Form {
     public $fields = array();
     
     /**
+     * @var string
+     */
+    public $button = 'Save';
+    
+    /**
      * Constructor
      * 
      * @return void
@@ -62,6 +67,12 @@ class Form {
         
         // Store input
         $this->input = $input;
+        
+        // Get the form button
+        if (isset($data['button']))
+        {
+            $this->button = $data['button'];
+        }
         
         // Get the form fields
         if (isset($data['fields']))

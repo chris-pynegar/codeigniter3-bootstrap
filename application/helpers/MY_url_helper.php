@@ -21,7 +21,7 @@ if ( ! function_exists('admin_url'))
      * @param string $url
      * @return string
      */
-    function admin_url($url)
+    function admin_url($url = '')
     {
         return site_url('admin/'.$url);
     }

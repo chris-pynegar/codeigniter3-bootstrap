@@ -24,11 +24,29 @@ class Account extends MY_Controller {
      */
     public function login()
     {
-        // Set the correct layout
-        $this->template->set_layout('login');
-        
         // Set the form
         $this->form->set($this->login_form());
+        
+        // Are we posting data?
+        if ($data = $this->input->post())
+        {
+            // Validate the form
+            if ($this->form->validate())
+            {
+                // Attempt to authenticate the user
+                if ($this->auth->login($data['username'], $data['password']))
+                {
+                    redirect('admin');
+                }
+                else
+                {
+                    $this->theme->error('Invalid login credentials.');
+                }
+            }
+        }
+        
+        // Set the correct layout
+        $this->template->set_layout('login');
         
         // Build the form
         $form = $this->form->build();
@@ -59,7 +77,7 @@ class Account extends MY_Controller {
                     'rules' => 'required'
                 )
             ),
-            'buttons'   => array()
+            'button'    => 'Login'
         );
     }
     

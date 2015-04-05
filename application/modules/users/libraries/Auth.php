@@ -23,6 +23,11 @@ class Auth {
     protected $logged_in = FALSE;
     
     /**
+     * @var string
+     */
+    protected $login_url = 'login';
+    
+    /**
      * Constructor
      * 
      * @return void
@@ -33,7 +38,7 @@ class Auth {
         $this->ci =& get_instance();
         
         // Ensure library dependencies are loaded
-        $this->ci->load->helper('url');
+        $this->ci->load->helper(array('url', 'users/auth'));
         $this->ci->load->model('users/users_model');
         
         // Check to see if the user is already logged in
@@ -67,6 +72,40 @@ class Auth {
         return $this->logged_in;
     }
     
+    /**
+     * Gets the login url
+     * 
+     * @return string
+     */
+    public function login_url()
+    {
+        return $this->login_url;
+    }
+    
+    /**
+     * Sets the login url
+     * 
+     * @param string $url
+     * @return void
+     */
+    public function set_login_url($url)
+    {
+        $this->login_url = $url;
+    }
+    
+    /**
+     * Request login if the user is not already logged in
+     * 
+     * @return void
+     */
+    public function request()
+    {
+        if ( ! $this->logged_in())
+        {
+            redirect($this->login_url());
+        }
+    }
+
     /**
      * Attempt to login a user based on their credentials
      * 

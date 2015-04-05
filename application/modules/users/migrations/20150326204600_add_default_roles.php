@@ -1,5 +1,10 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');
 
+/**
+ * @package CI Bootstrap
+ * @subpackage Users Module
+ * @author Chris Pynegar <chris@chrispynegar.co.uk>
+ */
 class Migration_Add_default_roles extends Module_migrator {
     
     /**

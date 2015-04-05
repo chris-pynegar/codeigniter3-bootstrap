@@ -5,9 +5,4 @@
  * @subpackage Users Module
  * @author Chris Pynegar <chris@chrispynegar.co.uk>
  */
-?>
-<div class="page-header">
-    <h1>Login</h1>
-</div>
-<?php $this->template->component('flashdata'); ?>
-<?php echo $form; ?>
+$route = array();

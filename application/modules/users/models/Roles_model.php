@@ -22,4 +22,28 @@ class Roles_model extends MY_Model {
         parent::__construct();
     }
     
+    /**
+     * Get the ID for a specific role
+     * 
+     * @param string $role
+     * @return int
+     */
+    public function role_id($role)
+    {
+        $record = $this->find('first', array(
+            'where' => array(
+                array('role', $role)
+            )
+        ));
+        
+        if ($record)
+        {
+            return $record->id;
+        }
+        else
+        {
+            return NULL;
+        }
+    }
+    
 }

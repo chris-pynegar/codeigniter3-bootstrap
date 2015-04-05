@@ -26,7 +26,9 @@ class MY_Controller extends CI_Controller {
         {
             show_404();
         }
-        else
+        
+        // Some things we only want to initialize if this is not a cli request
+        if ( ! is_cli())
         {
             // Load the form library
             $this->load->library('Form');
@@ -39,6 +41,18 @@ class MY_Controller extends CI_Controller {
                 'template'  => 'admin',
                 'layout'    => 'default'
             ));
+            
+            // If we are accessing the admin the user must be logged in
+            if (admin() && ! $this->auth->logged_in())
+            {
+                // Set the correct login url
+                $this->auth->set_login_url('admin/login');
+                
+                if ($this->router->module !== 'users' && $this->router->method !== 'login')
+                {
+                    $this->auth->request();
+                }
+            }
         }
     }
 

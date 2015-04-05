@@ -87,6 +87,6 @@
 
     <?php endforeach; ?>
 
-    <button type="submit" class="btn btn-success">Save</button>
+    <button type="submit" class="btn btn-success"><?php echo $this->form->button; ?></button>
 
 <?php echo $this->form->close(); ?>

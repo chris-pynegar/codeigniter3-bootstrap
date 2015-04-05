@@ -45,6 +45,15 @@ class Template {
         {
             $this->$key = $value;
         }
+        
+        // Check for stored flash messages
+        foreach (array('success', 'error') as $flash)
+        {
+            if ($message = $this->ci->session->flashdata('flash_'.$flash))
+            {
+                $this->data['flash_'.$flash] = $message;
+            }
+        }
     }
     
     /**
@@ -162,6 +171,48 @@ class Template {
         {
             return $this->ci->load->view($path, $this->data, $return);
         }
+    }
+    
+    /**
+     * Sets a success message
+     * 
+     * @param string $message
+     * @param bool $store
+     * @return void
+     */
+    public function success($message, $store = TRUE)
+    {
+        return $this->set_message('flash_success', $message, $store);
+    }
+    
+    /**
+     * Sets an error message
+     * 
+     * @param string $message
+     * @param bool $store
+     * @return void
+     */
+    public function error($message, $store = TRUE)
+    {
+        return $this->set_message('flash_error', $message, $store);
+    }
+
+    /**
+     * Sets a flash message
+     * 
+     * @param string $name
+     * @param string $message
+     * @param bool $store
+     * @return void
+     */
+    private function set_message($name, $message, $store = TRUE)
+    {
+        if ($store === TRUE)
+        {
+            $this->ci->session->set_flashdata($name, $message);
+        }
+        
+        $this->data[$name] = $message;
     }
     
 }
