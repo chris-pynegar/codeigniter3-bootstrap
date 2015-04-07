@@ -48,7 +48,7 @@ class MY_Controller extends CI_Controller {
                 // Set the correct login url
                 $this->auth->set_login_url('admin/login');
                 
-                if ($this->router->module !== 'users' && $this->router->method !== 'login')
+                if ($this->router->method !== 'login')
                 {
                     $this->auth->request();
                 }

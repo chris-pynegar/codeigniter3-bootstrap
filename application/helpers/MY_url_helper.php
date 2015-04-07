@@ -39,3 +39,21 @@ if ( ! function_exists('refresh'))
         redirect(current_url(), 'refresh');
     }
 }
+
+if ( ! function_exists('pagination_url'))
+{
+    /**
+     * Builds the pagination url
+     *
+     * @param string $url
+     * @param int $page
+     * @return array
+     */
+    function pagination_url($url, $page)
+    {
+        $http_query         = get_instance()->input->get();
+        $http_query['page'] = $page;
+
+        return site_url($url . '?' . http_build_query($http_query));
+    }
+}

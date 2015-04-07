@@ -6,7 +6,7 @@
             <div class="col-md-2 sidebar">
                 <ul class="nav nav-pills nav-stacked">
                     <li><a href="<?php echo admin_url(); ?>"> <i class="fa fa-fw fa-dashboard"></i><span>Dashboard</span></a></li>
-                    <li><a href="#"> <i class="fa fa-fw fa-group"></i><span>Users</span></a></li>
+                    <li><a href="<?php echo admin_url('users'); ?>"> <i class="fa fa-fw fa-group"></i><span>Users</span></a></li>
                 </ul>
             </div>
             <div class="col-md-10 content">

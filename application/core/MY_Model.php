@@ -821,6 +821,30 @@ class MY_Model extends CI_Model {
 
         return $data;
     }
+    
+    /**
+     * Get paginated and filtered records
+     * 
+     * @param int $page
+     * @param string $search
+     * @param string $sort
+     * @param string $dir
+     * @param array $options
+     * @return array
+     */
+    public function get_paginated($page = 1, $search = '', $sort = 'created', $dir = 'desc', array $options = array())
+    {
+        $options = array_merge_recursive($options, array(
+            'page'      => $page,
+            'search'    => $search,
+            'paginate'  => TRUE,
+            'order_by'  => array(
+                array($sort, $dir)
+            )
+        ));
+        
+        return $this->find('all', $options);
+    }
 
     /**
      * Common SELECT that will be used for finding records
