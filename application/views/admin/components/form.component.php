@@ -79,7 +79,7 @@
         <?php endif; ?>
 
         <?php if (isset($field['error'])): ?>
-            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+            <span class="fa fa-times form-control-feedback"></span>
             <p class="help-block"><?php echo $field['error']; ?></p>
         <?php endif ?>
 
