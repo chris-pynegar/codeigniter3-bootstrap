@@ -70,14 +70,36 @@ class Users extends MY_Controller {
         $posted = $this->input->post();
         
         // Set the form
-        $this->form->set($this->user_form(), ($posted ? $posted : $user));
+        $this->form->set($this->user_form($id !== NULL), ($posted ? $posted : $user));
         
         // If data has been posted, validate the posted data and save the user
         if ($posted)
         {
             if ($this->form->validate())
             {
+                // If a password has been passed, encrypt it
+                if (isset($posted['password']) && strlen($posted['password']) > 0)
+                {
+                    $posted['salt'] = $this->auth->generate_salt();
+                    $posted['password'] = $this->auth->encrypt_password($posted['password'], $posted['salt']);
+                }
+                else
+                {
+                    unset($posted['password']);
+                }
                 
+                // Save the user
+                if ($this->users_model->save($posted, $id))
+                {
+                    $this->template->success('User successfully saved.');
+                }
+                else
+                {
+                    $this->template->error('Could not save user.');
+                }
+                
+                // Redirect back to the user manager
+                redirect('admin/users');
             }
         }
         
@@ -102,9 +124,10 @@ class Users extends MY_Controller {
     /**
      * User form
      * 
+     * @param bool $edit
      * @return array
      */
-    private function user_form()
+    private function user_form($edit = FALSE)
     {
         return array(
             'fields'    => array(
@@ -118,7 +141,7 @@ class Users extends MY_Controller {
                     'label' => 'Password',
                     'name'  => 'password',
                     'type'  => 'password',
-                    'rules' => 'required'
+                    'rules' => $edit === FALSE ? 'required' : ''
                 ),
                 array(
                     'label' => 'Email Address',
