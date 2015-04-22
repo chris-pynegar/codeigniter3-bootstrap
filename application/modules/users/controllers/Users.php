@@ -118,7 +118,26 @@ class Users extends MY_Controller {
      */
     public function delete($id)
     {
+        // You cannot delete yourself
+        if ($id === $this->auth->user()->id)
+        {
+            $this->template->error('You cannot delete yourself.');
+        }
+        // Attempt user deletion
+        else
+        {
+            if ($this->users_model->delete($id))
+            {
+                $this->template->success('Successfully deleted user.');
+            }
+            else
+            {
+                $this->template->error('Unable to delete user.');
+            }
+        }
         
+        // Return to the users view
+        redirect('admin/users');
     }
     
     /**
