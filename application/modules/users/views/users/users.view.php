@@ -41,7 +41,7 @@
                             <ul class="dropdown-menu" role="menu">
                                 <li><a href="<?php echo admin_url('users/edit/'.$user->id); ?>">Edit</a></li>
                                 <li class="divider"></li>
-                                <li><a href="<?php echo admin_url('users/delete/'.$user->id); ?>">Delete</a></li>
+                                <li><a href="<?php echo admin_url('users/delete/'.$user->id); ?>" data-confirm="Are you sure you want to delete this user?">Delete</a></li>
                             </ul>
                         </div>
                     </td>
