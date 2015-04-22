@@ -59,6 +59,11 @@
         }
         else if ($field['type'] === 'dropdown')
         {
+            if (isset($field['please_select']) && $field['please_select'] === TRUE)
+            {
+                $field['options'] = array('' => 'Please select') + $field['options'];
+            }
+            
             echo $this->form->dropdown($field['name'], $field['options'], $field['data'], $field['attributes']);
         }
         else if ($field['type'] === 'radio')

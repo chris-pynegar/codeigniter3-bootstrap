@@ -148,8 +148,23 @@ class Users extends MY_Controller {
      */
     private function user_form($edit = FALSE)
     {
+        // Ensure the roles model is loaded
+        $this->load->model('users/roles_model');
+        
+        // Get the roles for the role dropdown
+        $roles = $this->roles_model->dropdown();
+        
+        // Return the form options
         return array(
             'fields'    => array(
+                array(
+                    'label'         => 'Role',
+                    'name'          => 'role_id',
+                    'type'          => 'dropdown',
+                    'rules'         => 'required',
+                    'options'       => $roles,
+                    'please_select' => TRUE
+                ),
                 array(
                     'label' => 'Username',
                     'name'  => 'username',

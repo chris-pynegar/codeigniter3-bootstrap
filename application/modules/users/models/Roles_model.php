@@ -46,4 +46,30 @@ class Roles_model extends MY_Model {
         }
     }
     
+    /**
+     * Get the roles for the form dropdown
+     * 
+     * @return array
+     */
+    public function dropdown()
+    {
+        $records = $this->find('all', array(
+            'select'    => array(
+                array('id, name')
+            ),
+            'order_by'  => array(
+                array('id', 'asc')
+            )
+        ));
+        
+        $roles = array();
+        
+        foreach ($records as $role)
+        {
+            $roles[$role->id] = $role->name;
+        }
+        
+        return $roles;
+    }
+    
 }
