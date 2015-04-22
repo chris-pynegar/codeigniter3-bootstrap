@@ -22,7 +22,7 @@
                                     </a>
                                     <ul role="menu" class="dropdown-menu">
                                         <li><a href="#">Profile</a></li>
-                                        <li><a href="#">Preferences</a></li>
+                                        <li><a href="<?php echo admin_url('system/preferences'); ?>">Preferences</a></li>
                                         <li class="divider"></li>
                                         <li><a href="#">Logout</a></li>
                                     </ul>

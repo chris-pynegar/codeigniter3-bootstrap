@@ -5,7 +5,7 @@
  * @subpackage System Module
  * @author Chris Pynegar <chris@chrispynegar.co.uk>
  */
-class Dashboard extends MY_Controller {
+class Preferences extends MY_Controller {
     
     /**
      * Constructor
@@ -18,13 +18,14 @@ class Dashboard extends MY_Controller {
     }
     
     /**
-     * /admin/dashboard
+     * /admin/system/preferences
      * 
      * @return void
      */
     public function index()
     {
-        $this->template->view('dashboard/dashboard');
+        // Output the template
+        $this->template->view('preferences/preferences');
     }
     
 }

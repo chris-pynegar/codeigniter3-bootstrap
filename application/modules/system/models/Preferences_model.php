@@ -5,7 +5,12 @@
  * @subpackage System Module
  * @author Chris Pynegar <chris@chrispynegar.co.uk>
  */
-class Dashboard extends MY_Controller {
+class Preferences_model extends MY_Model {
+    
+    /**
+     * @var string
+     */
+    protected $table = 'preferences';
     
     /**
      * Constructor
@@ -15,16 +20,6 @@ class Dashboard extends MY_Controller {
     public function __construct()
     {
         parent::__construct();
-    }
-    
-    /**
-     * /admin/dashboard
-     * 
-     * @return void
-     */
-    public function index()
-    {
-        $this->template->view('dashboard/dashboard');
     }
     
 }

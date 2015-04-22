@@ -54,6 +54,9 @@ class MY_Controller extends CI_Controller {
                 }
             }
         }
+
+        // Load required models
+        $this->load->model('system/preferences');
     }
 
 }
