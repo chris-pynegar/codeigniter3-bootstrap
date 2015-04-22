@@ -61,7 +61,7 @@ $route['translate_uri_dashes']  = FALSE;
  | Find admin routes within the modules.
  | 
  */
-$route['admin']         = 'dashboard/index';
+$route['admin']         = 'system/dashboard/index';
 $route['admin/login']   = 'users/account/login';
 $route['admin/(.+)']    = function($a)
 {
