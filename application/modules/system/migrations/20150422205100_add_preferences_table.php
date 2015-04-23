@@ -31,6 +31,10 @@ class Migration_Add_preferences_table extends Module_migrator {
                 'unsigned'          => TRUE,
                 'auto_increment'    => TRUE
             ),
+            'label' => array(
+                'type'              => 'varchar',
+                'constraint'        => 100
+            ),
             'name' => array(
                 'type'              => 'varchar',
                 'constraint'        => 50

@@ -12,6 +12,7 @@ class Migration_Add_default_preferences extends Module_migrator {
      */
     private $default_preferences = array(
         'website_name'  => array(
+            'label'         => 'Website Name',
             'value'         => 'Bootstrap Website',
             'form_options'  => array(
                 'type'  => 'text',
